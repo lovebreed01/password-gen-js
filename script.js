@@ -1,9 +1,27 @@
 const form = document.forms.numberForm 
 
-window.onload = ()=>{
-  const input = document.querySelector('#input')
-  input.focus()
+
+window.onload = () => {
+  if (localStorage.getItem('websites') == null ){
+  localStorage.setItem('websites', '[]')
 }
+  const input = document.querySelector('#input')
+  input.focus();
+  const section = document.querySelector('.websites')
+  const websites = JSON.parse(localStorage.getItem('websites'))
+  websites.forEach(website => {
+    let site = document.createElement('span')
+    let siteName = document.createElement('p')
+    let pass = document.createElement('p')
+    siteName.textContent = `${website.siteName}`
+    pass.textContent = `${website.passValue}`
+    site.appendChild(siteName)
+    site.appendChild(pass)
+    section.appendChild(site)
+  });
+}
+
+
 form.onsubmit = function(e){
   e.preventDefault() 
   let input = document.querySelector('input')
@@ -21,18 +39,22 @@ form.onsubmit = function(e){
   const generated = document.querySelector('.generated').firstElementChild
 
   if(input.value < password.length){
-    generated.innerText = "Password can't be generated . Value too much"
+    generated.textContent = "Password can't be generated . Value too much"
     return false
   }
-  else{
-    generated.innerText = password
+  else {
+    document.getElementById('copy-button').style.display = 'block';
+    document.getElementById('save-btn').style.display = 'block'
+    generated.textContent = ''
     var passwords = []
     passVal.value = password
     passwords.push(password)
     console.log(passwords) 
     let siteName = document.createElement('input')
     siteName.setAttribute('id', 'site-name')
+    siteName.setAttribute('placeholder', 'The name of your site')
     generated.appendChild(siteName)
+    siteName.focus()
   }
 }
 const copyBtn = document.querySelector("#copy-button")
@@ -42,20 +64,24 @@ copyBtn.addEventListener("click",function(){
   document.execCommand('copy')
   alert("copied")
 })
-const savePass = ()=>{
+
+//Function saves password to localstorage
+const savePass = () => {
   let passValue = document.querySelector("#pass-value").value
   let siteName = document.querySelector('#site-name').value
-  let storedPasswords = []
-  window.localStorage.setItem("password" , storedPasswords)
-  const saved = [...localStorage.getItem('password')]
-  let pass = {
-    passValue:passValue, 
-    siteName:siteName
+  let storedWebsites = localStorage.getItem('websites')
+  let stored = JSON.parse(storedWebsites)
+  let websites = []
+  console.log(passValue, siteName)
+  let obj = {
+    passValue,
+    siteName
   }
-  saved.push(pass)
-window.localStorage.setItem("password", saved)
-  let p = Array(localStorage.getItem('password')) 
-  console.log(p)
+  websites.push(obj, ...stored)
+  console.log(websites)
+  localStorage.setItem('websites', JSON.stringify(websites))
+  alert('password saved')
+  location.reload()
 }
 const saveBtn = document.querySelector('#save-btn')
 saveBtn.addEventListener('click',savePass)
