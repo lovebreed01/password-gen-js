@@ -23,8 +23,12 @@ window.onload = () => {
 
 
 form.onsubmit = function(e){
-  e.preventDefault() 
-  let input = document.querySelector('input')
+  e.preventDefault() ;
+  let input = document.querySelector('#input')
+  if( input.value == '' || input.value < 6){
+    alert('enter a valid number greater than 6')
+    return false ;
+  }
   let pass = '1&q%2w\e3|mr4n{b5tv@6c$x_zyl&7luk-j8ih+9o*p0?a!ds'
   var password = ''
   
