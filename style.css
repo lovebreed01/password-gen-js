@@ -9,13 +9,18 @@
   padding: 0;
   margin: 0;
 }
-.container{
+body{
   background-color: var(--color-1);
-  color: var(--text-color);
-  height: 100vh;
+  padding: 0;
+  margin: 0;
   width: 100vw;
-  display:flex;
+
+}
+.container{
+  width: 100%;
+  display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 h1{
@@ -24,7 +29,7 @@ h1{
   text-align: center;
   background-color: var(--lighter-color);
   color: var(--text-color);
-  padding: 30px 10px;
+  padding: 10px;
 }
 .form-cont{
   display: flex;
@@ -78,10 +83,11 @@ button{
 #site-name{
   padding: 10px;
   font-weight: bolder;
+
 }
 #pass-value{
   border: none;
-  font-size:30px;
+  font-size:1.3rem;
   font-family:monospace;
   text-align: center;
   background:inherit;
@@ -96,12 +102,13 @@ button{
 }
 #copy-button{
   display: none;
-  padding: 8px;
+  padding: 2px;
   position: absolute;
   top: 0;
   right:40px;
   background-color: var(--lighter-color);
   font-size: small;
+  z-index: -1;
 }
 #save-btn{
   display: none;
@@ -115,13 +122,13 @@ button{
 
 
 #site-name{
-  width: 100%;
-  font-size:25px ;
+  width: auto;
+  font-size:1.2rem ;
   outline: none;
-  padding: 7px;
+  padding: 5px;
   font-weight: 600 ;
   border-radius:5px;
-  border: 8px solid var(--lighter-color);
+  border: 4px solid var(--lighter-color);
   background-color: var(--color-1);
   color: var(--text-color);
  
@@ -170,4 +177,5 @@ button{
   display: flex;
   margin-bottom: 12px;
   justify-content:space-between;
+  color: var(--text-color);
 }
