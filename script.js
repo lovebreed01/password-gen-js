@@ -25,10 +25,7 @@ window.onload = () => {
 form.onsubmit = function(e){
   e.preventDefault() 
   let input = document.querySelector('input')
-  let letters = 'qwertyuiopasdfgh'
-  let numbers = '87654321'
-  let char = '&q%w\e|rtu<i>{op@a$s_f&g-h+j*zklx?mn!'
-  let pass = char + letters + numbers
+  let pass = '1&q%2w\e3|mr4n{b5tv@6c$x_zyl&7luk-j8ih+9o*p0?a!ds'
   var password = ''
   
     const passVal = document.querySelector('#pass-value')
@@ -52,8 +49,9 @@ form.onsubmit = function(e){
     console.log(passwords) 
     let siteName = document.createElement('input')
     siteName.setAttribute('id', 'site-name')
-    siteName.setAttribute('placeholder', 'The name of your site')
+    siteName.setAttribute('placeholder', 'Example : www.pass.com')
     generated.appendChild(siteName)
+   
     siteName.focus()
   }
 }
